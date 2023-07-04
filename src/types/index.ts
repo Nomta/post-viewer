@@ -1,5 +1,6 @@
 export * from './ApiResponse'
 export * from './ApiFunction'
+export * from './ErrorInfo'
 export * from './Post'
 export * from './PostSearchParams'
 export * from './SearchParams'
