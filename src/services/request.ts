@@ -5,9 +5,9 @@
  * @returns {Promise<ApiResponse<T>>} - ответ сервера в виде ApiResponse
  */
 
-import type { ApiErrorResponse, ApiSuccessResponse, ErrorInfo, SearchParams } from "@/types"
+import type { ApiErrorResponse, ApiSuccessResponse, ErrorInfo } from "@/types"
 
-export async function get<T>(url: string, params?: SearchParams) {
+export async function get<T, P>(url: string, params?: P) {
   try {
     const response = await fetch(buildUrl(url, params))
 
@@ -52,7 +52,7 @@ function createSuccessResult<T>(data: T, response: Response) {
   } as ApiSuccessResponse<T>
 }
 
-function buildUrl(baseUrl: string, params?: SearchParams) {
+function buildUrl<P>(baseUrl: string, params?: P) {
   const url = new URL(baseUrl)
 
   if (params) {
