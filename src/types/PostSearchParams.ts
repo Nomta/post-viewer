@@ -1,5 +1,5 @@
 export type PostSearchParams = {
-  q?: string
+  search?: string
   page?: number
   limit?: number
 }

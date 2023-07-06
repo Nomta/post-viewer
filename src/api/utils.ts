@@ -3,23 +3,25 @@ import type { ApiResponse, ResponseData } from '@/types'
 
 type SearchParams = { [key: string]: string | number | boolean | undefined }
 type QueryParams = { [key: string]: string }
+type ResponseCallback = <T>(responseData: ResponseData<T>) => void
+
 
 export function mapSearchParams(params: SearchParams, queryParams: QueryParams) {
   return transform(params, queryParams)
 }
 
-export function mapResponse<T>({ response, isSuccess, error, data }: ApiResponse<T>) {
+export function mapResponse<T>(
+  { isSuccess, error, data }: ApiResponse<T>,
+  successCallback?: ResponseCallback,
+  errorCallback?: ResponseCallback,
+) {
   const responseData: ResponseData<T> = { error, data }
 
   if (isSuccess) {
-    const totalCount = response.headers.get('X-Total-Count')
-
-    if (totalCount) {
-      responseData.totalCount = Number(totalCount)
-    }
+    successCallback?.(responseData)
 
   } else {
-    console.error(error.message)
+    errorCallback?.(responseData)
   }
   return responseData
 }
