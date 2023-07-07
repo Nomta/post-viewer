@@ -1,6 +1,6 @@
 <template>
-  <UiCard :title="post.title">
-    {{post.body}}
+  <UiCard>
+    <span class="post-title">{{post.title}}</span>
   </UiCard>
 </template>
 
@@ -12,3 +12,10 @@ defineProps<{
   post: Post
 }>()
 </script>
+
+<style scoped>
+.post-title {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+</style>
