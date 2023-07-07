@@ -1,5 +1,16 @@
 <template>
-  <ElPagination v-model:current-page="currentPage" :page-size="itemCount" :pager-count="linkCount" layout="prev, pager, next" :total="totalCount" background />
+  <div class="pagination">
+    <ElPagination 
+      v-model:current-page="currentPage" 
+      :page-size="itemCount" 
+      :pager-count="linkCount" 
+      :total="totalCount" 
+      layout="prev, pager, next" 
+      hide-on-single-page  
+      background 
+    />
+    <p style="margin-left: 1.5rem;">{{ currentPage }} / {{ totalCount }}</p>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -12,12 +23,13 @@ const props = defineProps<{
   totalCount: number
 }>()
 
-const emit = defineEmits<{
-  'update:modelValue': [newValue: number]
-}>()
+const currentPage = defineModel()
 
-const currentPage = computed({
-  get: () => props.modelValue,
-  set: (newValue) => emit('update:modelValue', newValue),
-})
 </script>
+
+<style scoped>
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+</style>
