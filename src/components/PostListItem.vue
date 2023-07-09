@@ -5,7 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import UiCard from './ui/UiCard.vue'
 import type { Post } from '@/types'
 
 defineProps<{

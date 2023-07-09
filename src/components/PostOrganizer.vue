@@ -13,7 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import PostList from './PostList.vue'
 import type { Post } from '@/types'
 
 defineProps<{

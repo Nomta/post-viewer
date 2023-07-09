@@ -6,7 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import UiSelect from './ui/UiSelect.vue'
 
 const value = defineModel<number>()
 

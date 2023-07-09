@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import UiDataList from './ui/UiDataList.vue'
-import PostListItem from './PostListItem.vue'
 import type { Post } from '@/types'
 
 defineProps<{

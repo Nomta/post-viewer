@@ -25,11 +25,6 @@
 <script setup lang="ts">
 import { computed, ref, toRefs } from 'vue'
 import { usePostQuery } from '@/composables/usePostQuery'
-import PostHeader from './PostHeader.vue'
-import PostOrganizer from './PostOrganizer.vue'
-import PostSearch from './PostSearch.vue'
-import PostCountSelect from './PostCountSelect.vue'
-import UiPagination from './ui/UiPagination.vue'
 
 // default params
 

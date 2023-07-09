@@ -10,7 +10,6 @@
 </template>
 
 <script setup lang="ts" generic="T">
-import UiEmpty from './UiEmpty.vue'
 
 defineProps<{
   items: T[]
