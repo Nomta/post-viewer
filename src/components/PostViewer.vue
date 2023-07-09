@@ -1,56 +1,57 @@
 <template>
   <main class="post-viewer">
-    <PostSearch v-model="search" />
+
+    <PostHeader>
+      <PostSearch v-model="search" />
+      <PostCountSelect v-model="countPerPage" />
+    </PostHeader>
+
     <PostOrganizer 
       :posts="posts" 
-      :loading="loading" 
+      :loading="isFetching" 
       class="post-organizer" 
     />
-    <UiPagination  
+
+    <UiPagination 
       v-model="page" 
       :item-count="countPerPage" 
       :total-count="totalCount" 
       class="post-pagination" 
     />
+
   </main>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
-import { fetchPosts } from '@/api'
-import { useFetch } from '@/composables/useFetch'
+import { computed, ref, toRefs } from 'vue'
+import { usePostQuery } from '@/composables/usePostQuery'
+import PostHeader from './PostHeader.vue'
 import PostOrganizer from './PostOrganizer.vue'
 import PostSearch from './PostSearch.vue'
+import PostCountSelect from './PostCountSelect.vue'
 import UiPagination from './ui/UiPagination.vue'
-import type { Post, PostSearchParams } from '@/types'
 
-//posts
+// default params
 
-const posts = computed(() => data.value ?? [])
-
-//pagination
-const page = ref(1)
-const countPerPage = 5
-const totalCount = ref<number>(0)
-
-//search
 const search = ref('')
+const page = ref(1)
+const countPerPage = ref(10)
 
-//load data
+// load data
 
-const { data, loading, fetchData, headers } = useFetch<Post[], PostSearchParams>(fetchPosts)
+const params = computed(() => ({
+  limit: countPerPage.value,
+  page: page.value,
+  search: search.value
+}))
 
-watch([page, search], async () => {
-  await fetchData({ 
-    limit: countPerPage, 
-    page: page.value, 
-    search: search.value 
-  })
+const response = usePostQuery(params)
+const { isFetching, data } = toRefs(response)
 
-  if (headers.value.totalCount) {
-    totalCount.value = headers.value.totalCount
-  }
-}, { immediate: true })
+// response 
+
+const posts = computed(() => data.value?.data ?? [])
+const totalCount = computed<number>(() => data.value?.totalCount ?? 0)
 
 </script>
 
@@ -64,10 +65,11 @@ watch([page, search], async () => {
   margin: 0 auto;
   padding: 1rem;
 }
+
 .post-organizer {
   min-height: calc(100vh - 9.5rem);
-  /* background-color: rgb(119, 125, 193); */
 }
+
 .post-pagination {
   margin-top: auto;
 }

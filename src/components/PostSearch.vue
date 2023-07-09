@@ -1,27 +1,19 @@
 <template>
-  <div class="post-search">
-    <UiInputSearch 
-      v-model="selectedPostTitle" 
-      class="post-search__input" 
-      placeholder="Поиск по названию" 
-    />
-  </div>
+  <UiInputSearch 
+    v-model="value" 
+    class="post-search__input" 
+    placeholder="Поиск по названию" 
+  />
 </template>
 
 <script setup lang="ts">
 import UiInputSearch from './ui/UiInputSearch.vue'
 
-const selectedPostTitle = defineModel()
+const value = defineModel<string>()
 
 </script>
 
 <style scoped>
-.post-search {
-  display: flex;
-  justify-content: end;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
 
 .post-search__input {
   max-width: 32rem;
