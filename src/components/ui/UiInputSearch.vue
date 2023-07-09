@@ -3,9 +3,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onUnmounted } from 'vue'
-import { debounce } from 'lodash'
+import { ref } from 'vue'
+import { useDebounceWatch } from '@/composables/useDebounceWatch'
 import Search from '../icons/Search.vue'
+
+const value = ref<string>()
 
 const props = withDefaults(defineProps<{
   modelValue?: string
@@ -16,16 +18,7 @@ const emit = defineEmits<{
   'update:modelValue': [newValue: string]
 }>()
 
-const value = ref<string>()
-
-const debounceFn = debounce((newValue) => {
-  emit('update:modelValue', newValue)
+useDebounceWatch(value, (newValue) => {
+  emit('update:modelValue', newValue as string)
 }, props.delay)
-
-onUnmounted(() => {
-  debounceFn.cancel()
-})
-
-watch(value, debounceFn)
-
 </script>

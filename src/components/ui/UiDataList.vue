@@ -1,7 +1,7 @@
 <template>
   <div v-loading="loading">
     <ul v-if="items.length">
-      <li class="list-item" v-for="item in items" key="item[keyPropName]">
+      <li v-for="item in items" class="list-item" key="item[keyPropName]">
         <slot :item="item" />
       </li>
     </ul>

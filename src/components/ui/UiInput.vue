@@ -5,5 +5,3 @@
 <script setup lang="ts">
 const value = defineModel()
 </script>
-
-<style scoped></style>
