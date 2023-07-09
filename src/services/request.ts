@@ -7,7 +7,7 @@
 
 import type { ApiErrorResponse, ApiSuccessResponse, ErrorInfo } from "@/types"
 
-export async function get<T, P>(url: string, params?: P) {
+export async function get<T, P = undefined>(url: string, params?: P) {
   try {
     const response = await fetch(buildUrl(url, params))
 

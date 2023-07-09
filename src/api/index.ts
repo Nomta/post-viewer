@@ -1,4 +1,4 @@
 /* fetch posts */
 
-export { fetchPosts } from './fetchPosts'
+export { fetchPosts, POST_API_KEY } from './fetchPosts'
 

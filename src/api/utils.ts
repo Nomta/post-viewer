@@ -1,9 +1,11 @@
 import { transform } from '@/services/utils/transform'
-import type { ApiResponse, ResponseData } from '@/types'
+import type { ApiResponse, ResponseData, ErrorInfo } from '@/types'
 
 type SearchParams = { [key: string]: string | number | boolean | undefined }
 type QueryParams = { [key: string]: string }
-type ResponseCallback = <T>(responseData: ResponseData<T>) => void
+
+type SuccessCallback = <T>(responseData: ResponseData<T>) => void
+type ErrorCallback = (error: ErrorInfo) => void
 
 
 export function mapSearchParams(params: SearchParams, queryParams: QueryParams) {
@@ -12,16 +14,21 @@ export function mapSearchParams(params: SearchParams, queryParams: QueryParams) 
 
 export function mapResponse<T>(
   { isSuccess, error, data }: ApiResponse<T>,
-  successCallback?: ResponseCallback,
-  errorCallback?: ResponseCallback,
+  successCallback?: SuccessCallback,
+  errorCallback?: ErrorCallback,
 ) {
-  const responseData: ResponseData<T> = { error, data }
 
-  if (isSuccess) {
-    successCallback?.(responseData)
+  if (!isSuccess) {
+    errorCallback?.(error)
 
-  } else {
-    errorCallback?.(responseData)
+    /* Vue Query requires throw an error: 'https://vue-query.vercel.app/#/guides/queries' */
+
+    throw Error(error.message)
   }
+  
+  const responseData: ResponseData<T> = { data }
+
+  successCallback?.(responseData)
+
   return responseData
 }
