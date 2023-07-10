@@ -2,8 +2,7 @@
   <div class="post-organizer">
     <PostList 
       :posts="posts" 
-      :loading="loading"  
-      default-message="Нет данных"
+      :loading="loading" 
       class="post-organizer__area post-organizer__src" 
     />
     <PostList 

@@ -2,11 +2,15 @@
   <UiDataList 
     :items="posts" 
     :loading="loading" 
-    key-prop-name="id"
     :default-message="defaultMessage"
-    v-slot="{ item }"
+    item-key="id"
   >
-    <PostListItem :post="item" />
+    <template #default="{ item }">
+      <PostListItem :post="item" />
+    </template>
+    <template v-if="defaultMessage" #empty>
+      {{ defaultMessage }}
+    </template>
   </UiDataList>
 </template>
 

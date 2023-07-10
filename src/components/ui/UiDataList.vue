@@ -1,11 +1,13 @@
 <template>
   <div v-loading="loading">
     <ul v-if="items.length">
-      <li v-for="item in items" class="list-item" key="item[keyPropName]">
-        <slot :item="item" />
+      <li v-for="item in items" class="list-item" key="item[itemKey]">
+        <slot name="default" :item="item" />
       </li>
     </ul>
-    <UiEmpty v-else-if="defaultMessage">{{ defaultMessage }}</UiEmpty>
+    <UiEmpty v-else>
+      <slot name="empty">Нет данных</slot>
+    </UiEmpty>
   </div>
 </template>
 
@@ -13,9 +15,8 @@
 
 defineProps<{
   items: T[]
-  keyPropName: keyof T
+  itemKey: keyof T
   loading?: boolean
-  defaultMessage?: string
 }>()
 
 </script>
