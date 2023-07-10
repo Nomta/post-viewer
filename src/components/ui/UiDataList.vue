@@ -5,7 +5,7 @@
         <slot :item="item" />
       </li>
     </ul>
-    <UiEmpty v-else>Нет данных</UiEmpty>
+    <UiEmpty v-else-if="defaultMessage">{{ defaultMessage }}</UiEmpty>
   </div>
 </template>
 
@@ -15,6 +15,7 @@ defineProps<{
   items: T[]
   keyPropName: keyof T
   loading?: boolean
+  defaultMessage?: string
 }>()
 
 </script>

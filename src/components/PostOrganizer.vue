@@ -2,11 +2,13 @@
   <div class="post-organizer">
     <PostList 
       :posts="posts" 
-      :loading="loading" 
+      :loading="loading"  
+      default-message="Нет данных"
       class="post-organizer__area post-organizer__src" 
     />
     <PostList 
-      :posts="[]" 
+      :posts="[]"  
+      default-message="Здесь пока ничего нет. Перетащите сюда элементы из основного списка для удобной работы с ними"
       class="post-organizer__area post-organizer__target" 
     />
   </div>

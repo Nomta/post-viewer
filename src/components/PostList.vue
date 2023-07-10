@@ -1,5 +1,11 @@
 <template>
-  <UiDataList :items="posts" :loading="loading" key-prop-name="id" v-slot="{ item }">
+  <UiDataList 
+    :items="posts" 
+    :loading="loading" 
+    key-prop-name="id"
+    :default-message="defaultMessage"
+    v-slot="{ item }"
+  >
     <PostListItem :post="item" />
   </UiDataList>
 </template>
@@ -10,6 +16,7 @@ import type { Post } from '@/types'
 defineProps<{
   posts: Post[]
   loading?: boolean
+  defaultMessage?: string
 }>()
 
 </script>
