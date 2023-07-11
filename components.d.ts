@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Close: typeof import('./src/components/icons/Close.vue')['default']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -27,6 +28,7 @@ declare module 'vue' {
     PageFooter: typeof import('./src/components/PageFooter.vue')['default']
     PageHeader: typeof import('./src/components/PageHeader.vue')['default']
     PostCountSelect: typeof import('./src/components/PostCountSelect.vue')['default']
+    PostDraggable: typeof import('./src/components/PostDraggable.vue')['default']
     PostHeader: typeof import('./src/components/PostHeader.vue')['default']
     PostItem: typeof import('./src/components/PostItem.vue')['default']
     PostList: typeof import('./src/components/PostList.vue')['default']
@@ -38,8 +40,12 @@ declare module 'vue' {
     PostViewer: typeof import('./src/components/PostViewer.vue')['default']
     Search: typeof import('./src/components/icons/Search.vue')['default']
     UiAutocomplete: typeof import('./src/components/ui/UiAutocomplete.vue')['default']
+    UiButton: typeof import('./src/components/ui/UiButton.vue')['default']
     UiCard: typeof import('./src/components/ui/UiCard.vue')['default']
+    UiCloseButton: typeof import('./src/components/ui/UiCloseButton.vue')['default']
     UiDataList: typeof import('./src/components/ui/UiDataList.vue')['default']
+    UiDraggable: typeof import('./src/components/ui/UiDraggable.vue')['default']
+    UiDraggableItems: typeof import('./src/components/ui/UiDraggableItems.vue')['default']
     UiEmpty: typeof import('./src/components/ui/UiEmpty.vue')['default']
     UiInput: typeof import('./src/components/ui/UiInput.vue')['default']
     UiInputSearch: typeof import('./src/components/ui/UiInputSearch.vue')['default']

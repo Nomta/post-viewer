@@ -5,9 +5,13 @@
     :sort="isMove" 
     :item-key="itemKey" 
     :ghost-class="ghostClass"
+    filter=".disabled"
   >
     <template #item="{ element }">
-      <div class="draggable-item">
+      <div 
+        class="draggable-item" 
+        :class="{'disabled': filter?.(element) }"
+      >
         <slot :item="element" />
       </div>
     </template>
@@ -23,6 +27,7 @@ const props = defineProps<{
   itemKey: string
   group: string
   mode?: Mode
+  filter?: (item: T) => boolean
 }>()
 
 /* mode setup */
@@ -47,7 +52,7 @@ const ghostClass = isMove ? 'ghost' : undefined
 }
 
 .disabled {
-  opacity: 0.5;
+  opacity: 0.8;
   cursor: default;
 }
 
