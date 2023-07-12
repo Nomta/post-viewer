@@ -1,22 +1,22 @@
 <template>
   <div class="post-organizer">
-
+    
     <div class="post-column post-column__src">
       <PostDraggable 
-        :posts="posts"
-        :loading="loading"
-        :filter="filter"
-        mode="clone"
-        default-message="Нет данных" 
-        class="post-draggable"
+        :posts="posts" 
+        :loading="loading" 
+        :filter="filter" 
+        mode="clone" 
+        default-message="Нет данных"
+        class="post-draggable" 
       />
     </div>
 
     <div class="post-column post-column__target">
       <PostDraggable 
-        v-model="localPosts" 
-        default-message="Здесь пока ничего нет. Перетащите сюда элементы из основного списка для удобной работы с ними" 
-        class="post-draggable"
+        v-model="localPosts"
+        default-message="Здесь пока ничего нет. Перетащите сюда элементы из основного списка для удобной работы с ними"
+        class="post-draggable" 
       />
 
       <UiDelete class="post-delete" />
@@ -25,7 +25,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
+import { useStorage } from '@/services/storage'
 import type { Post } from '@/types'
 
 defineProps<{
@@ -33,12 +34,19 @@ defineProps<{
   loading?: boolean
 }>()
 
-const localPosts = ref<Post[]>([])
+const createStorage = useStorage()
+const { getItem, setItem } = createStorage('posts')
+
+const localPosts = ref<Post[]>(getItem('localPosts') as Post[])
 const localIndexes = computed(() => localPosts.value.map((post) => post.id))
 
 const filter = (item: Post) => {
   return localIndexes.value.includes(item.id)
 }
+
+watch(localPosts, (newValue) => {
+  setItem('localPosts', newValue)
+})
 
 </script>
 

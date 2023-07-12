@@ -7,7 +7,7 @@ type StorageType<T> = {
 
 type CreateStorage = <T>(prefix: string) => StorageType<T>
 
-const useStorage = (): CreateStorage => {
+export const useStorage = (): CreateStorage => {
   const getKey = (prefix: string, key: string) => `${prefix}/${key}/`
 
   const getKeys = (prefix: string) => {
