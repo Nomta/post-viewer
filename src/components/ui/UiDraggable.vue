@@ -5,6 +5,7 @@
     :sort="isMove" 
     :item-key="itemKey" 
     :ghost-class="ghostClass"
+    class="draggable-area"
     filter=".disabled"
   >
     <template #item="{ element }">
@@ -47,6 +48,9 @@ const ghostClass = isMove ? 'ghost' : undefined
 </script>
 
 <style scoped>
+.draggable-area {
+  min-height: 3rem;
+}
 .draggable-item {
   cursor: move;
 }

@@ -1,5 +1,6 @@
 <template>
   <div class="post-organizer">
+
     <div class="post-column post-column__src">
       <PostDraggable 
         :posts="posts"
@@ -7,13 +8,18 @@
         :filter="filter"
         mode="clone"
         default-message="Нет данных" 
+        class="post-draggable"
       />
     </div>
+
     <div class="post-column post-column__target">
       <PostDraggable 
         v-model="localPosts" 
         default-message="Здесь пока ничего нет. Перетащите сюда элементы из основного списка для удобной работы с ними" 
+        class="post-draggable"
       />
+
+      <UiDelete class="post-delete" />
     </div>
   </div>
 </template>
@@ -44,6 +50,8 @@ const filter = (item: Post) => {
 }
 
 .post-column {
+  display: flex;
+  flex-direction: column;
   border-radius: var(--el-border-radius-base);
 }
 
@@ -53,6 +61,15 @@ const filter = (item: Post) => {
 
 .post-column__target {
   background-color: var(--el-color-success-light-7);
+}
+.post-column__delete {
+  background-color: var(--el-color-danger-light-7);
+}
+.post-draggable {
+  flex-grow: 1;
+}
+.post-delete {
+  flex-grow: 0;
 }
 
 @media (min-width: 768px) {

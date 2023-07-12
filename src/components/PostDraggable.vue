@@ -3,9 +3,9 @@
     <UiDraggable 
       v-model="localPosts" 
       v-loading="loading" 
-      group="posts" 
-      item-key="id" 
       :items="posts" 
+      item-key="id" 
+      group="posts" 
       :mode="mode" 
       :filter="filter"
       class="post-draggable__area" 
@@ -43,7 +43,6 @@ const empty = computed(() =>
 <style scoped>
 .post-draggable {
   position: relative;
-  height: 100%;
 }
 .post-draggable__area {
   height: 100%;
