@@ -13,3 +13,16 @@ ul {
   padding: 0;
   list-style: none;
 }
+/* variables */
+
+:root {
+  /* colors */
+  --color-primary-light: var(--el-color-primary-light-7);
+  --color-success-light: var(--el-color-success-light-7);
+  --color-danger-light: var(--el-color-danger-light-7);
+  --color-danger-dark: var(--el-color-danger-dark-2);
+  --color-info-dark: var(--el-color-info-dark-2);
+
+  /* other */
+  --border-radius: var(--el-border-radius-base);
+}

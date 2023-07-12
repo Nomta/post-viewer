@@ -39,6 +39,6 @@ const active = ref(false)
 }
 
 .active {
-  color: var(--el-color-danger-dark-2);
+  color: var(--color-danger-dark);
 }
 </style>

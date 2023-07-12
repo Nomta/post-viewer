@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Close: typeof import('./src/components/icons/Close.vue')['default']
+    Delete: typeof import('./src/components/icons/Delete.vue')['default']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -44,6 +45,7 @@ declare module 'vue' {
     UiCard: typeof import('./src/components/ui/UiCard.vue')['default']
     UiCloseButton: typeof import('./src/components/ui/UiCloseButton.vue')['default']
     UiDataList: typeof import('./src/components/ui/UiDataList.vue')['default']
+    UiDelete: typeof import('./src/components/ui/UiDelete.vue')['default']
     UiDraggable: typeof import('./src/components/ui/UiDraggable.vue')['default']
     UiDraggableItems: typeof import('./src/components/ui/UiDraggableItems.vue')['default']
     UiEmpty: typeof import('./src/components/ui/UiEmpty.vue')['default']

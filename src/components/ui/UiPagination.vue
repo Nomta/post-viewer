@@ -9,14 +9,12 @@
       hide-on-single-page  
       background 
     />
-    <p style="margin-left: 1.5rem;">{{ currentPage }} / {{ totalCount }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 
-const props = defineProps<{
+defineProps<{
   modelValue: number
   itemCount?: number
   linkCount?: number

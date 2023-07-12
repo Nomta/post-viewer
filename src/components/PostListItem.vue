@@ -1,22 +1,16 @@
 <template>
-  <UiCard :closable="closable" @close="close">
+  <UiCard>
     <span class="post-title">{{post.title}}</span>
   </UiCard>
 </template>
 
 <script setup lang="ts">
+import UiCard from './ui/UiCard.vue'
 import type { Post } from '@/types'
 
-const props = defineProps<{
+defineProps<{
   post: Post
-  closable?: boolean
 }>()
-
-const emit = defineEmits<{ 
-  close: [ id: string ] 
-}>()
-
-const close = () => emit('close', props.post.id)
 </script>
 
 <style scoped>

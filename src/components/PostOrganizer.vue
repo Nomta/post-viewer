@@ -50,24 +50,28 @@ const filter = (item: Post) => {
 }
 
 .post-column {
+  min-height: 14rem;
   display: flex;
   flex-direction: column;
-  border-radius: var(--el-border-radius-base);
+  border-radius: var(--border-radius);
 }
 
 .post-column__src {
-  background-color: var(--el-color-primary-light-7);
+  background-color: var(--color-primary-light);
 }
 
 .post-column__target {
-  background-color: var(--el-color-success-light-7);
+  background-color: var(--color-success-light);
 }
+
 .post-column__delete {
-  background-color: var(--el-color-danger-light-7);
+  background-color: var(--color-danger-light);
 }
+
 .post-draggable {
   flex-grow: 1;
 }
+
 .post-delete {
   flex-grow: 0;
 }
