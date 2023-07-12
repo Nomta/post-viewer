@@ -1,26 +1,33 @@
 <template>
   <div class="post-organizer">
     
-    <div class="post-column post-column__src">
-      <PostDraggable 
-        :posts="posts" 
-        :loading="loading" 
-        :filter="filter" 
-        mode="clone" 
-        default-message="Нет данных"
-        class="post-draggable" 
-      />
+    <div class="post-column">
+      <div class="post-list">
+        <PostDraggable 
+          :posts="posts" 
+          :loading="loading" 
+          :filter="filter" 
+          mode="clone" 
+          default-message="Нет данных"
+          class="post-draggable post-draggable--src" 
+        />
+      </div>
     </div>
 
-    <div class="post-column post-column__target">
-      <PostDraggable 
-        v-model="localPosts"
-        default-message="Здесь пока ничего нет. Перетащите сюда элементы из основного списка для удобной работы с ними"
-        class="post-draggable" 
-      />
+    <div class="post-column">
+      <div class="post-list">
+        <PostDraggable 
+          v-model="localPosts"
+          default-message="Здесь пока ничего нет. Перетащите сюда элементы из основного списка для удобной работы с ними"
+          class="post-draggable post-draggable--target" 
+        />
+      </div>
 
-      <UiDelete class="post-delete" />
+      <div class="post-delete">
+        <UiDelete class="post-draggable post-draggable--delete" />
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -61,27 +68,35 @@ watch(localPosts, (newValue) => {
   min-height: 14rem;
   display: flex;
   flex-direction: column;
-  border-radius: var(--border-radius);
+  gap: 1rem;
 }
 
-.post-column__src {
-  background-color: var(--color-primary-light);
-}
-
-.post-column__target {
-  background-color: var(--color-success-light);
-}
-
-.post-column__delete {
-  background-color: var(--color-danger-light);
-}
-
-.post-draggable {
+.post-list {
   flex-grow: 1;
 }
 
-.post-delete {
-  flex-grow: 0;
+.post-draggable {
+  height: 100%;
+  border-radius: var(--border-radius);
+}
+
+.post-draggable--src {
+  background-color: var(--color-primary-light);
+}
+
+.post-draggable--target {
+  background-color: var(--color-success-light);
+}
+
+.post-draggable--delete {
+  height: 3rem;
+  overflow: hidden;
+  background-color: var(--color-danger-light);
+}
+
+.post-delete>>>.active {
+  background-color: var(--color-danger-medium);
+  color: var(--color-danger-dark);
 }
 
 @media (min-width: 768px) {

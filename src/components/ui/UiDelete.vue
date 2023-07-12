@@ -1,23 +1,12 @@
 <template>
   <div class="delete">
-    <UiDraggable 
-      class="delete__area" 
-      @dragenter="active = true" 
-      @dragleave="active = false"
-      @add="active = false"
-    />
-    <Delete 
-      class="delete__icon" 
-      :class="{'active': active}" 
-    />
+    <UiDraggable class="delete__area" />
+    <Delete class="delete__icon" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import Delete from '../icons/Delete.vue'
-
-const active = ref(false)
 
 </script>
 
@@ -36,9 +25,5 @@ const active = ref(false)
   right: 0;
   bottom: 0;
   margin: 1rem;
-}
-
-.active {
-  color: var(--color-danger-dark);
 }
 </style>
