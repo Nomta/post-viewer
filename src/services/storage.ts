@@ -1,53 +1,30 @@
-type StorageType<T> = {
-  getItem: (key: string) => T | null
-  setItem: (key: string, value: T) => void
-  removeItem: (key: string) => void
-  getAll: () => (T | null)[]
+export class RawStorage {
+  static get(key: string): string | null {
+    return localStorage.getItem(key)
+  }
+  static set(key: string, value: string): void {
+    localStorage.setItem(key, value)
+  }
+  static remove(key: string): void {
+    localStorage.removeItem(key)
+  }
+  static clear(): void {
+    localStorage.clear()
+  }
 }
 
-type CreateStorage = <T>(prefix: string) => StorageType<T>
-
-export const useStorage = (): CreateStorage => {
-  const getKey = (prefix: string, key: string) => `${prefix}/${key}/`
-
-  const getKeys = (prefix: string) => {
-    return Object.keys(localStorage)
-      .filter(key => key.startsWith(prefix))
+export class Storage extends RawStorage {
+  constructor() {
+    super()
   }
-
-  return <T>(prefix: string): StorageType<T> => {
-
-    const getItem = (key: string): T | null => {
-      const value = localStorage.getItem(getKey(prefix, key))
-      if (value) {
-        return JSON.parse(value) as T
-      }
-      return null
+  static get<T>(key: string): T | null {
+    const value = super.get(key)
+    if (value) {
+      return JSON.parse(value) as T
     }
-
-    const getAll = () => {
-      return getKeys(prefix).map((key) => {
-        const value = localStorage.getItem(key)
-        if (value) {
-          return JSON.parse(value) as T
-        }
-        return null
-      })
-    }
-
-    const setItem = (key: string, value: T): void => {
-      localStorage.setItem(getKey(prefix, key), JSON.stringify(value))
-    }
-
-    const removeItem = (key: string): void => {
-      localStorage.removeItem(getKey(prefix, key))
-    }
-
-    return {
-      getItem,
-      setItem,
-      removeItem,
-      getAll,
-    }
+    return null
+  }
+  static set<T>(key: string, value: T): void {
+    super.set(key, JSON.stringify(value))
   }
 }

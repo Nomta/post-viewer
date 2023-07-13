@@ -32,8 +32,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
-import { useStorage } from '@/services/storage'
+import { computed } from 'vue'
+import { useStorage } from '@/composables/useStorage'
 import type { Post } from '@/types'
 
 defineProps<{
@@ -41,19 +41,15 @@ defineProps<{
   loading?: boolean
 }>()
 
-const createStorage = useStorage()
-const { getItem, setItem } = createStorage('posts')
+const localPosts = useStorage<Post[]>('posts', [])
 
-const localPosts = ref<Post[]>(getItem('localPosts') as Post[])
-const localIndexes = computed(() => localPosts.value.map((post) => post.id))
+const localIndexes = computed(() => {
+  return localPosts.value?.map((post) => post.id)
+})
 
 const filter = (item: Post) => {
-  return localIndexes.value.includes(item.id)
+  return localIndexes.value?.includes(item.id)
 }
-
-watch(localPosts, (newValue) => {
-  setItem('localPosts', newValue)
-})
 
 </script>
 
@@ -96,7 +92,6 @@ watch(localPosts, (newValue) => {
 
 .post-delete>>>.active {
   background-color: var(--color-danger-medium);
-  color: var(--color-danger-dark);
 }
 
 @media (min-width: 768px) {
