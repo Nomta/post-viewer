@@ -102,5 +102,14 @@ const filter = (item: Post) => {
   .post-column {
     width: calc(50% - 0.5rem);
   }
+  
+  /* высота блока подстраивается под содержимое: */
+  
+  /* 
+  .post-draggable--delete {
+    height: auto;
+    max-height: 4.5rem;
+  }
+   */
 }
 </style>

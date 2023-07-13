@@ -46,6 +46,7 @@ const empty = computed(() =>
 }
 .post-draggable__area {
   height: 100%;
+  min-height: 10.5rem;
   padding: 1rem;
 }
 .post-draggable__empty {
@@ -54,5 +55,11 @@ const empty = computed(() =>
   left: 0;
   right: 0;
   margin: 1rem;
+}
+
+@media (min-width: 478px) {
+  .post-draggable__area {
+    min-height: 9.5rem;
+  }
 }
 </style>
