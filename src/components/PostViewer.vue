@@ -25,12 +25,13 @@
 <script setup lang="ts">
 import { computed, ref, toRefs } from 'vue'
 import { usePostQuery } from '@/composables/usePostQuery'
+import { POST_COUNT_PER_PAGE } from '@/config'
 
 // default params
 
 const search = ref('')
 const page = ref(1)
-const countPerPage = ref(10)
+const countPerPage = ref(POST_COUNT_PER_PAGE)
 
 // load data
 
