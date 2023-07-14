@@ -34,6 +34,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useStorage } from '@/composables/useStorage'
+import { POST_LS_KEY } from '@/constants'
 import type { Post } from '@/types'
 
 defineProps<{
@@ -41,7 +42,7 @@ defineProps<{
   loading?: boolean
 }>()
 
-const localPosts = useStorage<Post[]>('posts', [])
+const localPosts = useStorage<Post[]>('POST_LS_KEY', [])
 
 const localIndexes = computed(() => {
   return localPosts.value?.map((post) => post.id)

@@ -1,6 +1,6 @@
 import { transform } from '@/services/utils/transform'
 import { get } from '@/services/request'
-import { POST_API_URL, POST_API_KEY, queryParams } from './endpoints'
+import { POST_API_URL, queryParams } from './endpoints'
 import { ResponseHeader, type Post, type PostSearchParams, type ResponseData } from '@/types'
 
 /**
@@ -35,8 +35,6 @@ export const fetchPosts = async (params: PostSearchParams) => {
 
   return responseData
 }
-
-export { POST_API_KEY }
 
 /* utils */
 
