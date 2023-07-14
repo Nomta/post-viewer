@@ -42,7 +42,7 @@ defineProps<{
   loading?: boolean
 }>()
 
-const localPosts = useStorage<Post[]>('POST_LS_KEY', [])
+const localPosts = useStorage<Post[]>(POST_LS_KEY, [])
 
 const localIndexes = computed(() => {
   return localPosts.value?.map((post) => post.id)
