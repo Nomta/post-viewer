@@ -90,7 +90,7 @@ const filter = (item: Post) => {
   background-color: var(--color-danger-light);
 }
 
-.post-delete>>>.active {
+.post-delete:deep(.active) {
   background-color: var(--color-danger-medium);
 }
 
