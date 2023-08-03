@@ -3,11 +3,11 @@ import { Storage } from '@/services/storage'
 
 /** Привязка к localStorage */
 
-export const useStorage = <T>(key: string, defaultValue: T | null = null) => {
-  const item = ref(defaultValue) as Ref<T | null>
+export const useStorage = <T>(key: string, defaultValue?: T) => {
+  const item = ref(defaultValue) as Ref<T | undefined>
 
   onMounted(() => {
-    const storedValue = Storage.get(key) as T | null
+    const storedValue = Storage.get(key) as T | undefined
     if (storedValue) {
       item.value = storedValue
     }

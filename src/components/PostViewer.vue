@@ -25,20 +25,28 @@
 <script setup lang="ts">
 import { computed, ref, toRefs } from 'vue'
 import { usePostQuery } from '@/composables/usePostQuery'
+import { useStorage } from '@/composables/useStorage'
 import { POST_COUNT_PER_PAGE } from '@/config'
+import { 
+  POST_COUNT_PER_PAGE_KEY, 
+  POST_CURRENT_PAGE_KEY, 
+} from '@/constants'
 
 // default params
 
 const search = ref('')
-const page = ref(1)
-const countPerPage = ref(POST_COUNT_PER_PAGE)
+const page = useStorage(POST_CURRENT_PAGE_KEY, 1)
+const countPerPage = useStorage(
+  POST_COUNT_PER_PAGE_KEY, 
+  POST_COUNT_PER_PAGE,
+)
 
 // load data
 
 const params = computed(() => ({
   limit: countPerPage.value,
   page: page.value,
-  search: search.value
+  search: search.value,
 }))
 
 const response = usePostQuery(params)
