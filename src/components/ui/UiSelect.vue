@@ -14,15 +14,13 @@ import { computed } from 'vue'
 
 const value = defineModel()
 
-const props = withDefaults(defineProps<{
+const { options, placeholder = '' } = defineProps<{
   options: Option[]
   placeholder?: string
-}>(), {
-  placeholder: ''
-})
+}>()
 
 const optionItems = computed(() => {
-  return props.options.map((option) => {
+  return options.map((option) => {
     return typeof option === 'object' ? option : {
       value: option,
       label: option,

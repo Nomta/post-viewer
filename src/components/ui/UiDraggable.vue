@@ -27,7 +27,7 @@
 import { ref, computed } from 'vue'
 import draggable from 'vuedraggable'
 
-const props = defineProps<{
+const { mode, group: groupName } = defineProps<{
   items: T[]
   itemKey: string
   group: string
@@ -43,11 +43,11 @@ const active = ref(false)
 
 type Mode = 'clone' | 'move' | 'off'
 
-const isMove = props.mode === 'move' || !props.mode
+const isMove = mode === 'move' || !mode
 
 const group = computed(() => ({
-  name: props.group,
-  pull: props.mode === 'clone' ? 'clone' : isMove,
+  name: groupName,
+  pull: mode === 'clone' ? 'clone' : isMove,
   put: isMove,
 }))
 

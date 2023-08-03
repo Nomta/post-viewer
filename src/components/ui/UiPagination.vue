@@ -9,6 +9,9 @@
       hide-on-single-page  
       background 
     />
+    <p style="margin-left: 1.5rem;">
+      {{ currentPage }} / {{ totalCount }}
+    </p>
   </div>
 </template>
 

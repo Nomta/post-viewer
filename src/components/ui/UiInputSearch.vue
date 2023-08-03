@@ -9,10 +9,10 @@ import Search from '../icons/Search.vue'
 
 const value = ref<string>()
 
-const props = withDefaults(defineProps<{
+const { delay = 300 } = defineProps<{
   modelValue?: string
   delay?: number
-}>(), { delay: 300 })
+}>()
 
 const emit = defineEmits<{
   'update:modelValue': [newValue: string]
@@ -20,5 +20,5 @@ const emit = defineEmits<{
 
 useDebounceWatch(value, (newValue) => {
   emit('update:modelValue', newValue as string)
-}, props.delay)
+}, delay)
 </script>

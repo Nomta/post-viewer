@@ -12,7 +12,8 @@ export default defineConfig({
   plugins: [
     vue({
       script: {
-        defineModel: true
+        propsDestructure: true,
+        defineModel: true,
       }
     }),
     AutoImport({

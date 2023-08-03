@@ -12,7 +12,7 @@
 import { computed } from 'vue'
 import Search from '../icons/Search.vue'
 
-const props = defineProps<{
+const { modelValue, loader } = defineProps<{
   modelValue: string
   itemTitle: keyof T
   loader: (queryString: string) => T[]
@@ -25,14 +25,14 @@ const emit = defineEmits<{
 }>()
 
 const value = computed({
-  get: () => props.modelValue,
+  get: () => modelValue,
   set: (newValue) => emit('update:modelValue', newValue),
 })
 
 type CBFunction = (data: T[]) => void
 
 const load = (queryString: string, cb: CBFunction) => {
-  const items = props.loader(queryString)
+  const items = loader(queryString)
   cb(items)
 }
 

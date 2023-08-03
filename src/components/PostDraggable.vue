@@ -25,7 +25,7 @@ import type { Post } from '@/types'
 
 const localPosts = defineModel<Post[]>() 
 
-const props = defineProps<{
+const { posts, defaultMessage } = defineProps<{
   posts: Post[]
   loading?: boolean
   mode?: string
@@ -34,8 +34,8 @@ const props = defineProps<{
 }>()
 
 const empty = computed(() => 
-  props.defaultMessage 
-  && !(props.posts || localPosts.value)?.length
+  defaultMessage 
+  && !(posts || localPosts.value)?.length
 )
 
 </script>
