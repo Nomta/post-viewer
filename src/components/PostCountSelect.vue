@@ -1,7 +1,11 @@
 <template>
   <div class="post-select">
     Выводить по&nbsp;
-    <UiSelect v-model="value" :options="POST_COUNT_PER_PAGE_OPTIONS" class="post-select__input" />
+    <UiSelect 
+      v-model="value" 
+      :options="POST_COUNT_PER_PAGE_OPTIONS" 
+      class="post-select__input" 
+    />
   </div>
 </template>
 
